@@ -12,6 +12,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: |
-        docker build -t ghcr.io/apipluspower/<image-name-placeholder>:latest --build-arg GIT_PAT=${{ secrets.GIT_PAT }} .
+        docker build -t ghcr.io/apipluspower/<image-name-placeholder>:latest --build-arg GIT_PAT=${{ secrets.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 }} .
         echo ${{ secrets.GIT_PAT }} | docker login ghcr.io -u apipluspower --password-stdin
         docker push ghcr.io/apipluspower/<image-name-placeholder>:latest
