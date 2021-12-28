@@ -1,0 +1,17 @@
+name: Go
+
+on:
+  push:
+    branches: [ main]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  push_core_image:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        docker build -t ghcr.io/apipluspower/<image-name-placeholder>:latest --build-arg GIT_PAT=${{ secrets.GIT_PAT }} .
+        echo ${{ secrets.GIT_PAT }} | docker login ghcr.io -u apipluspower --password-stdin
+        docker push ghcr.io/apipluspower/<image-name-placeholder>:latest
