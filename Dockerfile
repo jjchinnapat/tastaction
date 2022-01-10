@@ -21,7 +21,7 @@ RUN flutter channel master
 RUN flutter upgrade
 RUN flutter config --enable-web
 
-Copy files to container and build
+# Copy files to container and build
 RUN mkdir /app/
 COPY . /app/
 WORKDIR /app/
