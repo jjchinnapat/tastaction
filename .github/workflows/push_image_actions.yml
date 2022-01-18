@@ -6,26 +6,26 @@ on:
   pull_request:
     branches: [ main ]
 
-jobs:
-  build:
-    runs-on: self-hosted
+# jobs:
+#   build:
+#     runs-on: self-hosted
 
-    steps:
-    - uses: actions/checkout@v2
+#     steps:
+#     - uses: actions/checkout@v2
 
-    - name: Cache Primes
-      id: cache-primes
-      uses: actions/cache@v2
-      with:
-        path: /home/jjchin/.pub-cache
-        key: ${{ runner.os }}-primes
+#     - name: Cache Primes
+#       id: cache-primes
+#       uses: actions/cache@v2
+#       with:
+#         path: /home/jjchin/.pub-cache
+#         key: ${{ runner.os }}-primes
 
-    - name: Generate Prime Numbers
-      if: steps.cache-primes.outputs.cache-hit != 'true'
-      run: /generate-primes.sh -d prime-numbers
+#     - name: Generate Prime Numbers
+#       if: steps.cache-primes.outputs.cache-hit != 'true'
+#       run: /generate-primes.sh -d prime-numbers
 
-    - name: Use Prime Numbers
-      run: /primes.sh -d prime-numbers
+#     - name: Use Prime Numbers
+#       run: /primes.sh -d prime-numbers
     
   # build:
   #   runs-on: ubuntu-latest
@@ -62,6 +62,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: |
-        docker build -t ghcr.io/jjchinnapat/imageflutterweb:latest --build-arg GIT_PAT=${{ secrets.GIT_PAT }} .
+        docker build \
+        --cache-from imageflutterweb:latest \
+        -t ghcr.io/jjchinnapat/imageflutterweb:latest --build-arg GIT_PAT=${{ secrets.GIT_PAT }} .
         echo ${{ secrets.GIT_PAT }} | docker login ghcr.io -u jjchinnapat --password-stdin
         docker push ghcr.io/jjchinnapat/imageflutterweb:latest
