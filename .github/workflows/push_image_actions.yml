@@ -67,3 +67,5 @@ jobs:
         -t ghcr.io/jjchinnapat/imageflutterweb:latest --build-arg GIT_PAT=${{ secrets.GIT_PAT }} .
         echo ${{ secrets.GIT_PAT }} | docker login ghcr.io -u jjchinnapat --password-stdin
         docker push ghcr.io/jjchinnapat/imageflutterweb:latest
+
+#dl
