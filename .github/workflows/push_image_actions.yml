@@ -28,7 +28,7 @@ jobs:
   #     run: /primes.sh -d prime-numbers
     
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v2
