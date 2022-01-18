@@ -24,6 +24,7 @@ FROM imageflutterweb as builder
 # Copy files to container and build
 RUN mkdir /app/
 COPY . /app/
+VOLUME /home/jjchin/.pub-cache
 WORKDIR /app/
 RUN flutter build web
 
