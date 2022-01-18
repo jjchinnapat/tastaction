@@ -57,7 +57,7 @@ jobs:
         
 
   push_core_image:
-    needs: build
+  #  needs: build
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v2
