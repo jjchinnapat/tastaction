@@ -21,10 +21,12 @@ FROM imageflutterweb as builder
 # RUN flutter upgrade
 # RUN flutter config --enable-web
 
-# Copy files to container and build
+# # Copy files to container and build
 RUN mkdir /app/
 COPY . /app/
-VOLUME /home/jjchin/.pub-cache
+RUN npm i -g @adonisjs/cli
+ADD /home/jjchin/.pub-cache /app/
+RUN npm install
 WORKDIR /app/
 RUN flutter build web
 
