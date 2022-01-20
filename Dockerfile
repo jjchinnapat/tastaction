@@ -24,9 +24,9 @@ FROM imageflutterweb as builder
 # # Copy files to container and build
 RUN mkdir /app/
 COPY . /app/
-RUN npm i -g @adonisjs/cli
-ADD /home/jjchin/.pub-cache /app/
-RUN npm install
+# RUN npm i -g @adonisjs/cli
+VOLUME /home/jjchin/.pub-cache .cache/
+# RUN npm install
 WORKDIR /app/
 RUN flutter build web
 
