@@ -28,7 +28,7 @@ COPY . /app/
 COPY .pub-cache /root/.pub-cache
 # VOLUME /home/jjchin/.pub-cache /root/.pub-cache
 WORKDIR /app/
-RUN flutter build web
+RUN flutter pub get
 
 # FROM nginx:1.21.1-alpine
 # COPY --from=builder /app/build/web /usr/share/nginx/html
@@ -37,3 +37,4 @@ RUN flutter build web
 #copy cache to container OK
 # mount while run docker OK
 # ln -s /home/jjchin/.pub-cache /home/jjchin/testaction/.pub-cache
+# cp -r /home/jjchin/.pub-cache /home/jjchin/testaction
