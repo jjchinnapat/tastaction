@@ -23,12 +23,17 @@ FROM imageflutterweb as builder
 
 # # Copy files to container and build
 RUN mkdir /app/
+# RUN mkdir /root/.pub-cache
 COPY . /app/
-# RUN npm i -g @adonisjs/cli
-VOLUME /home/jjchin/.pub-cache .cache/
-# RUN npm install
+COPY .pub-cache /root/.pub-cache
+# VOLUME /home/jjchin/.pub-cache /root/.pub-cache
 WORKDIR /app/
 RUN flutter build web
 
-FROM nginx:1.21.1-alpine
-COPY --from=builder /app/build/web /usr/share/nginx/html
+# FROM nginx:1.21.1-alpine
+# COPY --from=builder /app/build/web /usr/share/nginx/html
+
+# pub get on docker file and pub get on container again not work maybe pub get different place
+#copy cache to container OK
+# mount while run docker OK
+# ln -s /home/jjchin/.pub-cache /home/jjchin/testaction/.pub-cache
