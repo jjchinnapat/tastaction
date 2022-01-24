@@ -1,0 +1,24 @@
+# See https://github.com/google/mono_repo.dart for details
+sdk:
+- 2.12.0
+- dev
+
+os:
+- linux
+- windows
+
+stages:
+- analyze_format:
+  - group:
+    - format
+    - analyze: --fatal-infos .
+    sdk: dev
+  - group:
+    - analyze
+    sdk: 2.12.0
+- unit_test:
+  - test
+
+cache:
+  directories:
+  - .dart_tool/build

@@ -36,5 +36,5 @@ RUN flutter pub get
 # pub get on docker file and pub get on container again not work maybe pub get different place
 #copy cache to container OK
 # mount while run docker OK
-# ln -s /home/jjchin/.pub-cache /home/jjchin/testaction/.pub-cache
+# ln -s /home/jjchin/.pub-cache /home/jjchin/testaction/.pub-cache not work
 # cp -r /home/jjchin/.pub-cache /home/jjchin/testaction
